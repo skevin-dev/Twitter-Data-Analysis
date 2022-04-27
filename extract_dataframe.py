@@ -35,12 +35,18 @@ class TweetDfExtractor:
 
     # an example function
     def find_statuses_count(self)->list:
-        statuses_count 
+        #create an empty list 
+        statuses_count = list()
         
+        #iterate through tweets list 
+        for elem in self.tweet_list:
+            #append in created list statuses count
+            statuses_count.append(elem['user']['statuses_count']
+                                  
     def find_full_text(self)->list:
-        text = 
-       
-    
+        # create an empty list
+        text = list()
+         
     def find_sentiments(self, text)->list:
         
         return polarity, self.subjectivity
