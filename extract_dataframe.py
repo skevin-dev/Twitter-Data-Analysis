@@ -39,7 +39,7 @@ class TweetDfExtractor:
         statuses_count = list()
         
         #iterate through tweets list 
-        for elem in self.tweet_list:
+        for elem in self.tweets_list:
             #append in created list statuses count
             statuses_count.append(elem['user']['statuses_count']
                                   
@@ -52,17 +52,23 @@ class TweetDfExtractor:
         return polarity, self.subjectivity
 
     def find_created_time(self)->list:
+        created_at = []
+        for elem in self.tweets_list:
+            created_at.append(elem['created_at'])
        
         return created_at
 
     def find_source(self)->list:
-        source = 
+        # I can also use list comprehensiom
+        source = [elem['source'] for elem in self.tweets_list]
 
         return source
 
     def find_screen_name(self)->list:
-        screen_name = 
-
+        screen_name = []
+        for elem in self.tweets_list:
+            screen_name.append(elem['screen_name']) 
+                                  
     def find_followers_count(self)->list:
         followers_count = 
 
