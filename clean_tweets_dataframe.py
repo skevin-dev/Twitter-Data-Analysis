@@ -42,9 +42,18 @@ class Clean_Tweets:
         convert columns like polarity, subjectivity, retweet_count
         favorite_count etc to numbers
         """
-        df['polarity'] = pd.----
         
         ----
+        # convert polarity column to numeric, coerce for setting Invalid parsing to nan
+        df['polarity'] = pd.to_numeric(self.df['polarity'],errors="coerce")
+        
+        # same applies to other column
+        df['subjectivity'] = pd.to_numeric(self.df['subjectivity'], errors="coerce")
+        
+        # putting square bracket while extracting column is the same putting a dot 
+        df['favorite_count'] = pd.to_numeric( self.df.favorite_count, errors= "coerce")
+        
+        df['retweet_count'] = pd.to_numeric(self.df.retweet_count, errors="coerce")
         ----
         
         return df
