@@ -45,15 +45,15 @@ class Clean_Tweets:
         
         ----
         # convert polarity column to numeric, coerce for setting Invalid parsing to nan
-        df['polarity'] = pd.to_numeric(self.df['polarity'],errors="coerce")
+        df['polarity'] = pd.to_numeric(self.df['polarity'],errors="ignore")
         
         # same applies to other column
-        df['subjectivity'] = pd.to_numeric(self.df['subjectivity'], errors="coerce")
+        df['subjectivity'] = pd.to_numeric(self.df['subjectivity'], errors="ignore")
         
         # putting square bracket while extracting column is the same putting a dot 
-        df['favorite_count'] = pd.to_numeric( self.df.favorite_count, errors= "coerce")
+        df['favorite_count'] = pd.to_numeric( self.df.favorite_count, errors= "ignore")
         
-        df['retweet_count'] = pd.to_numeric(self.df.retweet_count, errors="coerce")
+        df['retweet_count'] = pd.to_numeric(self.df.retweet_count, errors="ignore")
         ----
         
         return df

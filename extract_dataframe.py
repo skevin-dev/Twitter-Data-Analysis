@@ -41,9 +41,10 @@ class TweetDfExtractor:
         #iterate through tweets list 
         for x in self.tweets_list:
             #append in created list statuses count
-            statuses_count.append(x['user']['statuses_count']
+            statuses_count.append(x['user']['statuses_count'])
                                   
     def find_full_text(self)->list:
+        
         # create an empty list
         text = []
         for tweets in self.tweets_list:
@@ -55,7 +56,13 @@ class TweetDfExtractor:
                                   
          
     def find_sentiments(self, text)->list:
-        
+        polarity = []
+        self.subjectivity = []
+        for tweets in text:
+            blob = TextBlob(tweets)
+            sentiment = blob.sentiment
+            polarity.append(sentiment.polarity)
+            self.subjectivity.append(sentiment.self.subjectivity)
         return polarity, self.subjectivity
 
     def find_created_time(self)->list:
@@ -117,10 +124,19 @@ class TweetDfExtractor:
         return retweet_count
 
     def find_hashtags(self)->list:
-        hashtags =
+        hashtags = []
+
+        for tweets in self.tweets_list:
+            hashtags.append(",".join([hashtag_item['text'] for hashtag_item in tweets['entities']['hashtags']]))
+        return hashtags
 
     def find_mentions(self)->list:
-        mentions = 
+        mentions = []
+        for tw in self.tweets_list:
+            mentions.append( ", ".join([mention['screen_name'] for mention in tw['entities']['user_mentions']]))
+
+        return mentions
+                                  
 
 
     def find_location(self)->list:
@@ -168,7 +184,7 @@ if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
     'original_author', 'screen_count', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place', 'place_coord_boundaries']
-    _, tweet_list = read_json("../covid19.json")
+    _, tweet_list = read_json("C:\Users\Kevin Shyaka\Desktop\SPRING22\10 academy check\Economic_Twitter_Data.json")
     tweet = TweetDfExtractor(tweet_list)
     tweet_df = tweet.get_tweet_df() 
 
