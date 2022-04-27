@@ -39,9 +39,9 @@ class TweetDfExtractor:
         statuses_count = list()
         
         #iterate through tweets list 
-        for elem in self.tweets_list:
+        for x in self.tweets_list:
             #append in created list statuses count
-            statuses_count.append(elem['user']['statuses_count']
+            statuses_count.append(x['user']['statuses_count']
                                   
     def find_full_text(self)->list:
         # create an empty list
@@ -53,33 +53,33 @@ class TweetDfExtractor:
 
     def find_created_time(self)->list:
         created_at = []
-        for elem in self.tweets_list:
-            created_at.append(elem['created_at'])
+        for x in self.tweets_list:
+            created_at.append(x['created_at'])
        
         return created_at
 
     def find_source(self)->list:
         # I can also use list comprehensiom
-        source = [elem['source'] for elem in self.tweets_list]
+        source = [x['source'] for x in self.tweets_list]
 
         return source
 
     def find_screen_name(self)->list:
         screen_name = []
-        for elem in self.tweets_list:
-            screen_name.append(elem['screen_name']) 
+        for x in self.tweets_list:
+            screen_name.append(x['screen_name']) 
         return screen_name
                                   
     def find_followers_count(self)->list:
         followers_count =[]
-        for elem in self.tweets_list:
-            followers_count.append(elem['user']['folowers_count'])
+        for x in self.tweets_list:
+            followers_count.append(x['user']['folowers_count'])
         return followers_count
 
     def find_friends_count(self)->list:
         friends_count= []
-        for elem in self.tweets_list:
-            friends_count.append(elem['user']['friends_count'])
+        for x in self.tweets_list:
+            friends_count.append(x['user']['friends_count'])
         return friends_count
 
     def is_sensitive(self)->list:
