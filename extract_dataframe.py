@@ -184,7 +184,7 @@ class TweetDfExtractor:
                 'lang':lang,'favorite_count':fav_count,'retweet_count':retweet_count,'original_author':screen_name, 
                 'followers_count':follower_count,'friends_count':friends_count,'possibly_sensitive':sensitivity,
                 'hashtags':hashtags,'user_mentions':mentions}
-        df = pd.DataFrame(data=data, columns=columns)
+        df = pd.DataFrame(data, columns=columns)
 
         if save:
             df.to_csv('processed_tweet_data.csv', index=False)
