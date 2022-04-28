@@ -20,7 +20,8 @@ class Clean_Tweets:
         """
         drop duplicate rows
         """
-        
+        self.df = self.df.drop_duplicates().drop_duplicates(subset='original_text')
+
         ---
         
         return df
@@ -29,7 +30,7 @@ class Clean_Tweets:
         convert column to datetime
         """
         ----
-        
+        self.df['created_at'] = pd.to_datetime(self.df['created_at'], errors='coerce')
         ----
         
         df = df[df['created_at'] >= '2020-12-31' ]
@@ -41,9 +42,18 @@ class Clean_Tweets:
         convert columns like polarity, subjectivity, retweet_count
         favorite_count etc to numbers
         """
-        df['polarity'] = pd.----
         
         ----
+        # convert polarity column to numeric, coerce for setting Invalid parsing to nan
+        df['polarity'] = pd.to_numeric(self.df['polarity'],errors="ignore")
+        
+        # same applies to other column
+        df['subjectivity'] = pd.to_numeric(self.df['subjectivity'], errors="ignore")
+        
+        # putting square bracket while extracting column is the same putting a dot 
+        df['favorite_count'] = pd.to_numeric( self.df.favorite_count, errors= "ignore")
+        
+        df['retweet_count'] = pd.to_numeric(self.df.retweet_count, errors="ignore")
         ----
         
         return df
@@ -52,7 +62,7 @@ class Clean_Tweets:
         """
         remove non english tweets from lang
         """
-        
-        df = ----
+        # we use query function to query tweets whereby lang(language) = en(english)
+        df = self.df.query("lang == 'en'")
         
         return df
